@@ -1,0 +1,51 @@
+{
+  "name": "tiner",
+  "version": "0.0.1",
+  "description": "Static server on-the-go",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sevastos/tiner.git"
+  },
+  "devDependencies": {
+    "jshint":     "x.x.x",
+    "mocha":      "x.x.x",
+	"should":	  "x.x.x",
+    "supertest":  "x.x.x"
+  },
+  "author": "sevastos",
+  "url": "https://github.com/sevastos",
+  "email": "m@sevastos.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sevastos/tiner/issues"
+  },
+  "preferGlobal": true,
+  "config": {
+    "port": 3030
+  },
+  "jshintConfig": {
+    "predef": [
+        "describe",
+        "it",
+        "beforeEach",
+        "afterEach",
+        "chai"
+    ],
+    "node": true,
+    "camelcase": true,
+    "eqeqeq": true,
+    "eqnull": true,
+    "indent": 2,
+    "latedef": true,
+    "newcap": true,
+    "quotmark": "single",
+    "trailing": true,
+    "undef": true,
+    "unused": true
+  }
+}
