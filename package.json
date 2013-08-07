@@ -2,14 +2,32 @@
   "name": "tiner",
   "version": "0.0.1",
   "description": "Static server on-the-go",
+  "keywords": [
+    "server",
+    "static",
+    "development"
+  ],
+  "url": "https://github.com/sevastos",
+  "author": "sevastos <m@sevastos.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sevastos/tiner.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sevastos/tiner/issues"
+  },
+  "preferGlobal": true,
+  "config": {
+    "port": 3030
+  },
+  "engines": {
+    "node": ">= 0.8.x"
+  },
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "test": "make test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/sevastos/tiner.git"
   },
   "devDependencies": {
     "jshint": "2.x.x",
@@ -17,17 +35,6 @@
     "should": "1.x.x",
     "supertest": "0.x.x",
     "chai": "1.x.x"
-  },
-  "author": "sevastos",
-  "url": "https://github.com/sevastos",
-  "email": "m@sevastos.com",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/sevastos/tiner/issues"
-  },
-  "preferGlobal": true,
-  "config": {
-    "port": 3030
   },
   "jshintConfig": {
     "predef": [
