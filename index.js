@@ -2,7 +2,7 @@
 'use strict';
 
 var path = require('path');
-var openBrowser = require(path.join(__dirname, 'lib', 'open-browser'));
+var open = require(path.join(__dirname, 'lib', 'open'));
 
 var server = require(path.join(__dirname, 'lib', 'server'));
 var host = 'localhost';
@@ -29,17 +29,17 @@ if (argPort > 0) {
 if (typeof process.env.MANUAL === 'undefined') {
   process.env.SILENT = process.env.SILENT || false;
   instance = new server(port, process.cwd(), function() {
-    console.log([
-      'Asd server started on:',
-      'Root Dir:: ' + process.cwd(),
-      'Address :: http://' + host + ':' + port + '/',
-      'CTRL + C to shutdown'
-    ].join('\n'));
+    if (!process.env.SILENT) {
+      console.log([
+        'Asd server started on:',
+        'Root Dir:: ' + process.cwd(),
+        'Address :: http://' + host + ':' + port + '/',
+        'CTRL + C to shutdown'
+      ].join('\n'));
+    }
 
-    var url = 'http://%host:%port/'
-                .replace('%host', host.replace(/"/, '\\"'))
-                .replace('%port', port);
-    openBrowser(url);
+    var url = 'http://' + host + ':' + port;
+    open.browser(url);
   });
 } else {
   process.env.SILENT = process.env.SILENT || true;
@@ -49,9 +49,13 @@ if (typeof process.env.MANUAL === 'undefined') {
 function shutdown() {
   if (instance && !instance.closing && instance.shutdown) {
     instance.closing = true;
-    console.log(' Server turning off...  （ˉ‸¯）   ( ¬ º.°)¬    ( ¬`.`)¬');
+    if (!process.env.SILENT) {
+      console.log(' Server turning off...  （ˉ‸¯）   ( ¬ º.°)¬    ( ¬`.`)¬');
+    }
     instance.shutdown(function() {
-      console.log(' Server OFF      (ー。ー) ZzZzz');
+      if (!process.env.SILENT) {
+        console.log(' Server OFF      (ー。ー) ZzZzz');
+      }
     });
   }
 }

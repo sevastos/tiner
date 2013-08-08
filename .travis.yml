@@ -1,5 +1,9 @@
 language: node_js
 node_js:
-  - "0.11"
-  - "0.10"
-  - "0.8"
+- "0.11"
+- "0.10"
+- "0.8"
+script: make test-ci
+env:
+  global:
+    secure: ToBAqwZ6UIKSoXR25v29SB6uJdJ3fi+b4t1J6RNnHafEGNz/AZI0LFAbJOuq+VX91ao79uA7uopvAR9rzo/Px2R2fGZVLTqIpt40tjdl1+eyqS+ONawi0qkbD/DukVohr7mqsHLDa6/1HuVY5opA3MObBXLWVkTno0yU2uQXiMo=

@@ -1,6 +1,6 @@
 'use strict';
 
-var asd = require('..'),
+var tiner = require('..'),
     path = require('path'),
     request = require('supertest'),
     fixtures = require(path.join(__dirname, 'fixtures')),
@@ -16,7 +16,7 @@ describe('Server', function() {
     servers = [];
     var queue = Object.keys(roots).length;
     Object.keys(roots).forEach(function(root) {
-      servers.push(new asd(30303 + servers.length, root));
+      servers.push(new tiner(30303 + servers.length, root));
       return (--queue ? '' : done());
     });
   });
@@ -31,7 +31,7 @@ describe('Server', function() {
     });
   });
 
-  it('listen()', function() {
+  it('listen(port, root)', function() {
     servers.forEach(function(server) {
       server.should.be.a('object');
     });
@@ -59,8 +59,40 @@ describe('Server', function() {
 
   });
 
-
-
-
 });
 
+
+describe('Server', function() {
+  var server;
+
+  beforeEach(function() {
+    server = undefined;
+  });
+
+  afterEach(function(done) {
+    if (server) {
+      server.shutdown(function() {
+        done();
+      });
+    }
+  });
+
+
+  it('listen(port, ready)', function(done) {
+    server = new tiner(30303, function() {
+      server.should.be.a('object');
+      server.root.should.equal(process.cwd());
+      done();
+    });
+  });
+
+  it('listen(port, root, ready)', function(done) {
+    var root = __dirname;
+    server = new tiner(30303, root, function() {
+      server.should.be.a('object');
+      server.root.should.equal(root);
+      done();
+    });
+  });
+
+});

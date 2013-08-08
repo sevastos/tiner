@@ -27,14 +27,20 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "make test"
+    "test": "make test",
+    "blanket": {
+        "pattern": "lib",
+        "data-cover-never": "node_modules"
+    }
   },
   "devDependencies": {
     "jshint": "2.x.x",
     "mocha": "1.x.x",
     "should": "1.x.x",
     "supertest": "0.x.x",
-    "chai": "1.x.x"
+    "coveralls": "2.x.x",
+    "mocha-lcov-reporter": "0.x.x",
+    "blanket": "1.x.x"
   },
   "jshintConfig": {
     "predef": [
