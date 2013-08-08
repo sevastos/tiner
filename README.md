@@ -2,14 +2,14 @@
 
 [![Build Status](https://travis-ci.org/sevastos/tiner.png?branch=master)](https://travis-ci.org/sevastos/tiner) [![Coverage Status](https://coveralls.io/repos/sevastos/tiner/badge.png)](https://coveralls.io/r/sevastos/tiner)
 
-A simple static file server on the go.
+A simple Node static file web server on the go for development.
 
 ### Setup
 
 ` npm install tiner -g `
 
 ### Usage
-Be on the directory you want to use as document root for the server
+Get on the directory you want to use as document root for the server
 and simply launch `tiner` .
 
 ##### Options
