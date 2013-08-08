@@ -6,10 +6,12 @@ var open = require(path.join(__dirname, 'lib', 'open'));
 
 var server = require(path.join(__dirname, 'lib', 'server'));
 var host = 'localhost';
-var port = 3030;
+var port = parseInt(process.env.TINER_PORT, 10) || 3030;
 var instance;
 
-// Settings
+//TODO: Better settings
+
+// Settings from NPM config
 var pckg = process.env['npm_package_name'];
 if (typeof pckg !== 'undefined') {
   var configPort = parseInt(process.env['npm_config_' + pckg + '_port'], 10);
@@ -21,6 +23,7 @@ if (typeof pckg !== 'undefined') {
   }
 }
 
+// Settings from cmd args
 var argPort = parseInt(process.argv[2], 10);
 if (argPort > 0) {
   port = argPort;
