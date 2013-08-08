@@ -1,6 +1,6 @@
 {
   "name": "tiner",
-  "version": "0.0.2",
+  "version": "0.0.6",
   "description": "Static server on-the-go",
   "keywords": [
     "server",
@@ -25,6 +25,9 @@
     "node": ">= 0.8.x"
   },
   "main": "index.js",
+  "bin": {
+    "tiner": "./bin/tiner"
+  },
   "scripts": {
     "start": "node index.js",
     "test": "make test",

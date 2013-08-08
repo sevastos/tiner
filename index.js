@@ -20,6 +20,7 @@ if (typeof pckg !== 'undefined') {
     host = configHost;
   }
 }
+
 var argPort = parseInt(process.argv[2], 10);
 if (argPort > 0) {
   port = argPort;
@@ -27,11 +28,11 @@ if (argPort > 0) {
 
 // Beef
 if (typeof process.env.MANUAL === 'undefined') {
-  process.env.SILENT = process.env.SILENT || false;
+  process.env.SILENT = process.env.SILENT || '';
   instance = new server(port, process.cwd(), function() {
     if (!process.env.SILENT) {
       console.log([
-        'Asd server started on:',
+        'Tiner listening on:',
         'Root Dir:: ' + process.cwd(),
         'Address :: http://' + host + ':' + port + '/',
         'CTRL + C to shutdown'
@@ -42,7 +43,7 @@ if (typeof process.env.MANUAL === 'undefined') {
     open.browser(url);
   });
 } else {
-  process.env.SILENT = process.env.SILENT || true;
+  process.env.SILENT = process.env.SILENT || 1;
 }
 
 // Shutdown cleanup
