@@ -1,7 +1,7 @@
 # Tiner ![tin](https://github.com/sevastos/tiner/raw/master/assets/tiner.png)
 
 
-[![Build Status](https://travis-ci.org/sevastos/tiner.png?branch=master)](https://travis-ci.org/sevastos/tiner) [![Coverage Status](https://coveralls.io/repos/sevastos/tiner/badge.png)](https://coveralls.io/r/sevastos/tiner)
+[![Build Status](https://travis-ci.org/sevastos/tiner.png?branch=master)](https://travis-ci.org/sevastos/tiner) [![Coverage Status](https://coveralls.io/repos/sevastos/tiner/badge.png)](https://coveralls.io/r/sevastos/tiner) [![Code Climate](https://codeclimate.com/github/sevastos/tiner.png)](https://codeclimate.com/github/sevastos/tiner)
 
 A simple Node static file web server on the go for development.
 
