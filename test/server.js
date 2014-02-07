@@ -1,6 +1,6 @@
 'use strict';
 
-var tiner = require('..'),
+var Tiner = require('..'),
     path = require('path'),
     request = require('supertest'),
     fixtures = require(path.join(__dirname, 'fixtures')),
@@ -16,7 +16,7 @@ describe('Server', function() {
     servers = [];
     var queue = Object.keys(roots).length;
     Object.keys(roots).forEach(function(root) {
-      servers.push(new tiner(30303 + servers.length, root));
+      servers.push(new Tiner(30303 + servers.length, root));
       return (--queue ? '' : done());
     });
   });
@@ -79,7 +79,7 @@ describe('Server', function() {
 
 
   it('listen(port, ready)', function(done) {
-    server = new tiner(30303, function() {
+    server = new Tiner(30303, function() {
       server.should.be.a('object');
       server.root.should.equal(process.cwd());
       done();
@@ -88,10 +88,23 @@ describe('Server', function() {
 
   it('listen(port, root, ready)', function(done) {
     var root = __dirname;
-    server = new tiner(30303, root, function() {
+    server = new Tiner(30303, root, function() {
       server.should.be.a('object');
       server.root.should.equal(root);
       done();
+    });
+  });
+
+  describe('Server handle exception', function() {
+    it('EADDRINUSE', function(done) {
+      server = new Tiner(30303, function() {
+        server.should.be.a('object');
+        var lateServer = new Tiner(30303, function(e, b) {
+          e.should.be.a('object');
+          e.code.should.equal('EADDRINUSE');
+          done();
+        });
+      });
     });
   });
 

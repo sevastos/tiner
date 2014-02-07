@@ -4,7 +4,7 @@
 var path = require('path');
 var open = require(path.join(__dirname, 'lib', 'open'));
 
-var server = require(path.join(__dirname, 'lib', 'server'));
+var Server = require(path.join(__dirname, 'lib', 'server'));
 var host = 'localhost';
 var port = parseInt(process.env.TINER_PORT, 10) || 3030;
 var instance;
@@ -32,8 +32,13 @@ if (argPort > 0) {
 // Beef
 if (typeof process.env.MANUAL === 'undefined') {
   process.env.SILENT = process.env.SILENT || '';
-  instance = new server(port, process.cwd(), function() {
+  instance = new Server(port, process.cwd(), function(e) {
     if (!process.env.SILENT) {
+      if (e) {
+        console.log('[error]:\t' + e.msg);
+        console.log('[.....]', e);
+        return;
+      }
       console.log([
         'Tiner listening on:',
         'Root Dir:: ' + process.cwd(),
@@ -65,6 +70,6 @@ function shutdown() {
 }
 
 process.on('SIGINT', shutdown); // undefined
-process.on('exit', shutdown);   // 0
+//process.on('exit', shutdown);   // 0
 
-module.exports = server;
+module.exports = Server;
