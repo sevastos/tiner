@@ -33,6 +33,7 @@ if (argPort > 0) {
 if (typeof process.env.MANUAL === 'undefined') {
   process.env.SILENT = process.env.SILENT || '';
   instance = new Server(port, process.cwd(), function(e) {
+    var url = 'http://' + host + ':' + port;
     if (!process.env.SILENT) {
       if (e) {
         console.log('[error]:\t' + e.msg);
@@ -40,14 +41,13 @@ if (typeof process.env.MANUAL === 'undefined') {
         return;
       }
       console.log([
-        'Tiner listening on:',
+        'Tiner (PID ' + process.pid + ') listening on:',
         'Root Dir:: ' + process.cwd(),
-        'Address :: http://' + host + ':' + port + '/',
+        'Address :: ' + url,
         'CTRL + C to shutdown'
       ].join('\n'));
     }
 
-    var url = 'http://' + host + ':' + port;
     open.browser(url);
   });
 } else {
@@ -65,6 +65,7 @@ function shutdown() {
       if (!process.env.SILENT) {
         console.log(' Server OFF      (ー。ー) ZzZzz');
       }
+      process.exit(0);
     });
   }
 }
